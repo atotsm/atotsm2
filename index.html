@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171713">
+  <meta name="description" content="Usurology and Ikigaiology: two complementary ways to understand the conditions shaping human life and explore how better conditions can be created.">
+  <meta property="og:title" content="ATOTSM — Understand the world. Reimagine what's possible.">
+  <meta property="og:description" content="Two complementary disciplines. One shared inquiry into the conditions for human flourishing.">
+  <meta property="og:type" content="website">
+  <title>ATOTSM — Understand the world. Reimagine what's possible.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #171713;
+      --ink-soft: #201f19;
+      --paper: #f1eadc;
+      --paper-dim: #c9c0ae;
+      --muted: #aaa18f;
+      --gold: #c18b45;
+      --gold-light: #dfb778;
+      --line: rgba(241,234,220,.16);
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "DM Sans", system-ui, sans-serif;
+      --width: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--sans);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5;
+      opacity: .12;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
+    }
+    a { color: inherit; }
+    button { font: inherit; }
+    .wrap { width: min(var(--width), calc(100% - 48px)); margin-inline: auto; }
+    .eyebrow {
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      font-size: .7rem;
+      font-weight: 700;
+    }
+    .serif { font-family: var(--serif); font-weight: 400; }
+    .muted { color: var(--muted); }
+    .gold { color: var(--gold-light); }
+    .topbar {
+      height: 76px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(23,23,19,.92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+    .nav {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: .83rem;
+      font-weight: 700;
+      letter-spacing: .17em;
+    }
+    .brand-mark {
+      width: 35px;
+      height: 35px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--gold-light);
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      letter-spacing: 0;
+    }
+    .navlinks { display: flex; align-items: center; gap: 28px; }
+    .navlinks a {
+      color: var(--paper-dim);
+      text-decoration: none;
+      font-size: .78rem;
+      transition: color .2s;
+    }
+    .navlinks a:hover { color: var(--gold-light); }
+    .navlinks .nav-cta {
+      color: var(--ink);
+      background: var(--gold-light);
+      padding: 10px 16px;
+      border-radius: 2px;
+      font-weight: 700;
+    }
+    .menu-toggle {
+      display: none;
+      color: var(--paper);
+      background: none;
+      border: 1px solid var(--line);
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+    .hero {
+      min-height: 690px;
+      display: grid;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 650px;
+      height: 650px;
+      border: 1px solid rgba(193,139,69,.15);
+      border-radius: 50%;
+      right: -110px;
+      top: 40px;
+      box-shadow: 0 0 0 65px rgba(193,139,69,.025), 0 0 0 130px rgba(193,139,69,.02);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; padding-block: 100px 115px; }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(3.8rem, 8.5vw, 7.6rem);
+      font-weight: 400;
+      line-height: .91;
+      letter-spacing: -.045em;
+      max-width: 850px;
+      margin: 28px 0;
+    }
+    .hero h1 em { color: var(--gold-light); font-weight: 400; }
+    .hero-copy {
+      max-width: 590px;
+      color: var(--paper-dim);
+      font-size: 1.05rem;
+      line-height: 1.85;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 48px;
+      padding: 0 21px;
+      text-decoration: none;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      border: 1px solid var(--gold);
+      transition: transform .2s, background .2s;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button.primary { background: var(--gold-light); color: var(--ink); border-color: var(--gold-light); }
+    .button.secondary { color: var(--paper); }
+    .hero-note { margin-top: 65px; color: var(--muted); font-size: .72rem; letter-spacing: .08em; }
+    section { padding-block: 112px; border-bottom: 1px solid var(--line); }
+    .section-head { max-width: 710px; margin-bottom: 54px; }
+    .section-head h2 {
+      font: 400 clamp(2.7rem, 5.5vw, 4.8rem)/1.02 var(--serif);
+      letter-spacing: -.025em;
+      margin: 18px 0;
+    }
+    .section-head p { color: var(--paper-dim); max-width: 610px; }
+    .thesis {
+      background: var(--paper);
+      color: var(--ink);
+      padding-block: 105px;
+    }
+    .thesis .eyebrow { color: #8a602b; }
+    .thesis-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .thesis h2 {
+      font: 400 clamp(2.8rem, 5.5vw, 5rem)/1 var(--serif);
+      margin: 20px 0;
+    }
+    .thesis p { color: #555044; max-width: 570px; }
+    .thesis-quote {
+      border-left: 1px solid #b68a50;
+      padding: 15px 0 15px 30px;
+      font: 400 clamp(1.6rem, 3vw, 2.5rem)/1.25 var(--serif);
+    }
+    .disciplines {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .discipline {
+      border: 1px solid var(--line);
+      padding: 38px;
+      min-height: 390px;
+      background: linear-gradient(145deg, rgba(255,255,255,.035), transparent 65%);
+    }
+    .discipline .symbol {
+      font: 400 3.2rem var(--serif);
+      color: var(--gold-light);
+      margin-bottom: 25px;
+    }
+    .discipline h3 { font: 400 2.7rem/1 var(--serif); margin: 0 0 8px; }
+    .discipline .subtitle { color: var(--gold-light); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; }
+    .discipline p { color: var(--paper-dim); }
+    .discipline ul { padding-left: 18px; color: var(--muted); font-size: .88rem; }
+    .discipline li { padding: 3px 0; }
+    .integration {
+      margin-top: 18px;
+      padding: 28px 34px;
+      border: 1px solid rgba(193,139,69,.45);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .integration .symbol { font: 400 2.5rem var(--serif); color: var(--gold-light); }
+    .integration p { margin: 4px 0 0; color: var(--paper-dim); font-size: .9rem; }
+    .method {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .step { padding: 28px 22px 30px 0; }
+    .step + .step { border-left: 1px solid var(--line); padding-left: 22px; }
+    .step-number { color: var(--gold-light); font: 400 1.8rem var(--serif); }
+    .step h3 { font: 400 1.9rem var(--serif); margin: 8px 0; }
+    .step p { color: var(--muted); font-size: .86rem; margin: 0; }
+    .domains {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .domain { background: var(--ink); padding: 28px; min-height: 170px; }
+    .domain .number { color: var(--gold-light); font: 400 1.5rem var(--serif); }
+    .domain h3 { font: 400 1.65rem var(--serif); margin: 9px 0 5px; }
+    .domain p { color: var(--muted); font-size: .82rem; margin: 0; }
+    .epistemic {
+      background: var(--ink-soft);
+    }
+    .standards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .standard {
+      border: 1px solid var(--line);
+      padding: 23px;
+    }
+    .standard h3 { font: 400 1.55rem var(--serif); margin: 0 0 8px; }
+    .standard p { color: var(--muted); font-size: .85rem; margin: 0; }
+    .invitation {
+      text-align: center;
+      padding-block: 130px;
+      background: radial-gradient(ellipse at 50% 100%, rgba(193,139,69,.11), transparent 55%);
+    }
+    .invitation h2 {
+      font: 400 clamp(3rem, 7vw, 6.3rem)/.98 var(--serif);
+      max-width: 850px;
+      margin: 20px auto;
+    }
+    .invitation p { max-width: 570px; margin: 20px auto 32px; color: var(--paper-dim); }
+    footer { padding-block: 35px; color: var(--muted); font-size: .75rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .footer-inner a { color: var(--paper-dim); text-decoration: none; }
+    .footer-inner a:hover { color: var(--gold-light); }
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 36px, var(--width)); }
+      .topbar { height: 68px; }
+      .menu-toggle { display: block; }
+      .navlinks {
+        display: none;
+        position: absolute;
+        top: 67px;
+        left: 0;
+        right: 0;
+        padding: 22px 24px 26px;
+        background: var(--ink);
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+      }
+      .navlinks.open { display: flex; }
+      .navlinks a { font-size: .9rem; }
+      .navlinks .nav-cta { text-align: center; }
+      .hero { min-height: 610px; }
+      .hero::after { width: 370px; height: 370px; right: -220px; top: 180px; }
+      .hero-inner { padding-block: 90px; }
+      .hero h1 { font-size: clamp(3.55rem, 15vw, 5.7rem); }
+      section { padding-block: 78px; }
+      .thesis { padding-block: 78px; }
+      .thesis-grid { grid-template-columns: 1fr; gap: 30px; }
+      .disciplines { grid-template-columns: 1fr; }
+      .discipline { min-height: 0; padding: 29px; }
+      .method { grid-template-columns: 1fr 1fr; }
+      .step { padding: 22px 15px 22px 0; }
+      .step + .step { padding-left: 15px; }
+      .step:nth-child(3) { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); }
+      .step:nth-child(4) { border-top: 1px solid var(--line); }
+      .domains { grid-template-columns: 1fr 1fr; }
+      .domain { padding: 20px; min-height: 155px; }
+      .standards { grid-template-columns: 1fr 1fr; }
+      .integration { padding: 22px; }
+    }
+    @media (max-width: 430px) {
+      .domains, .standards { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .button { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="ATOTSM home">
+        <span class="brand-mark">A</span><span>ATOTSM</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navlinks">Menu</button>
+      <div class="navlinks" id="navlinks">
+        <a href="#idea">The idea</a>
+        <a href="#disciplines">Two disciplines</a>
+        <a href="#method">The method</a>
+        <a href="#scope">Human flourishing</a>
+        <a class="nav-cta" href="#participate">Join the inquiry</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-inner wrap">
+        <div class="eyebrow">A living inquiry · An open framework</div>
+        <h1>Understand the world.<br><em>Reimagine</em> what's possible.</h1>
+        <p class="hero-copy">
+          What conditions allow people, communities and the living world to flourish?
+          And how might we understand those conditions well enough to create more of them?
+          ATOTSM explores that question through two complementary fields of inquiry.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#idea">Explore the idea</a>
+          <a class="button secondary" href="#disciplines">Discover the two disciplines</a>
+        </div>
+        <div class="hero-note">USUROLOGY × IKIGAIOLOGY &nbsp; · &nbsp; UNDERSTANDING × FLOURISHING</div>
+      </div>
+    </section>
+
+    <section class="thesis" id="idea">
+      <div class="wrap thesis-grid">
+        <div>
+          <div class="eyebrow">The central proposition</div>
+          <h2>Better lives require more than better intentions.</h2>
+          <p>
+            Human flourishing is shaped by the systems we inherit, the rules we live
+            under, the resources we can access, the relationships we build and the
+            possibilities we are able to imagine.
+          </p>
+          <p>
+            Understanding those conditions and cultivating meaningful lives are not
+            separate projects. They belong in the same conversation.
+          </p>
+        </div>
+        <div class="thesis-quote">
+          We need to understand what shapes our lives — and become more capable of
+          shaping the conditions in which life can flourish.
+        </div>
+      </div>
+    </section>
+
+    <section id="disciplines">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Two lenses, one inquiry</div>
+          <h2>See the conditions.<br><span class="gold">See the possibilities.</span></h2>
+          <p>
+            Usurology and Ikigaiology are proposed, evolving fields of inquiry.
+            They offer different but complementary lenses. Neither needs to claim
+            the whole picture.
+          </p>
+        </div>
+
+        <div class="disciplines">
+          <article class="discipline">
+            <div class="symbol" aria-hidden="true">U</div>
+            <h3>Usurology</h3>
+            <div class="subtitle">The study of systems and conditions</div>
+            <p>
+              An inquiry into how the structures around us shape what people and
+              communities can do: who has agency, how resources move, which rules
+              govern participation and where power accumulates.
+            </p>
+            <ul>
+              <li>Institutions, law and governance</li>
+              <li>Money, ownership and economic systems</li>
+              <li>Technology, infrastructure and access</li>
+              <li>Incentives, power and distributions of agency</li>
+            </ul>
+          </article>
+          <article class="discipline">
+            <div class="symbol" aria-hidden="true">I</div>
+            <h3>Ikigaiology</h3>
+            <div class="subtitle">The study of meaningful flourishing</div>
+            <p>
+              An inquiry into what makes life worth living and what helps people
+              develop their capacities: purpose, belonging, vitality, contribution,
+              autonomy and meaningful connection.
+            </p>
+            <ul>
+              <li>Meaning, purpose and direction</li>
+              <li>Health, vitality and human needs</li>
+              <li>Relationships, belonging and community</li>
+              <li>Mastery, contribution and personal agency</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="integration">
+          <div class="symbol" aria-hidden="true">U × I</div>
+          <div>
+            <strong>The meeting point</strong>
+            <p>
+              What kind of systems support meaningful lives — and what kind of lives,
+              in turn, help create healthy systems? The relationship is reciprocal.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="method">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">From inquiry to practice</div>
+          <h2>A framework should help us do something.</h2>
+          <p>
+            The aim is not to produce another closed ideology. It is to make ideas
+            examinable, useful and open to revision through experience.
+          </p>
+        </div>
+        <div class="method">
+          <article class="step">
+            <div class="step-number">01</div>
+            <h3>Observe</h3>
+            <p>Look closely at lived experience, evidence, needs and existing conditions.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">02</div>
+            <h3>Understand</h3>
+            <p>Trace relationships, incentives, constraints, causes and consequences.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">03</div>
+            <h3>Imagine</h3>
+            <p>Explore alternatives, principles, possibilities and better arrangements.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">04</div>
+            <h3>Experiment</h3>
+            <p>Try things at an appropriate scale, learn from results and revise.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="scope">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">A whole-of-life perspective</div>
+          <h2>Flourishing is not one-dimensional.</h2>
+          <p>
+            A society can be wealthy yet lonely, technologically advanced yet
+            disempowering, productive yet ecologically destructive. A useful
+            framework must look across the dimensions of life and how they interact.
+          </p>
+        </div>
+        <div class="domains">
+          <article class="domain">
+            <div class="number">01</div>
+            <h3>Material foundations</h3>
+            <p>Food, shelter, security, resources and the means to live.</p>
+          </article>
+          <article class="domain">
+            <div class="number">02</div>
+            <h3>Health & vitality</h3>
+            <p>Physical and mental wellbeing, energy, care and resilience.</p>
+          </article>
+          <article class="domain">
+            <div class="number">03</div>
+            <h3>Relationships</h3>
+            <p>Love, friendship, trust, belonging and mutual support.</p>
+          </article>
+          <article class="domain">
+            <div class="number">04</div>
+            <h3>Agency & freedom</h3>
+            <p>Autonomy, meaningful choice, voice and influence over one's life.</p>
+          </article>
+          <article class="domain">
+            <div class="number">05</div>
+            <h3>Meaning & mastery</h3>
+            <p>Purpose, learning, creativity, contribution and the development of potential.</p>
+          </article>
+          <article class="domain">
+            <div class="number">06</div>
+            <h3>Community & ecology</h3>
+            <p>Shared life, culture, place, biodiversity and a thriving living world.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="epistemic" id="principles">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Intellectual honesty</div>
+          <h2>Open to scrutiny. Built to evolve.</h2>
+          <p>
+            A new vocabulary is not proof that a new discipline is valid. These
+            concepts should earn their usefulness through clarity, evidence,
+            criticism and practice. Different kinds of claims deserve to be
+            identified rather than blended together.
+          </p>
+        </div>
+        <div class="standards">
+          <article class="standard">
+            <h3>Evidence</h3>
+            <p>Observations, data and sources that others can inspect and question.</p>
+          </article>
+          <article class="standard">
+            <h3>Interpretation</h3>
+            <p>An explanation of what evidence may mean, with its assumptions visible.</p>
+          </article>
+          <article class="standard">
+            <h3>Hypothesis</h3>
+            <p>A proposition that can be investigated and potentially disproved.</p>
+          </article>
+          <article class="standard">
+            <h3>Proposal</h3>
+            <p>A suggested principle, design or intervention that invites evaluation.</p>
+          </article>
+          <article class="standard">
+            <h3>Counterargument</h3>
+            <p>The strongest objections, alternatives and inconvenient evidence.</p>
+          </article>
+          <article class="standard">
+            <h3>Revision</h3>
+            <p>The willingness to change a position when better reasons emerge.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="invitation" id="participate">
+      <div class="wrap">
+        <div class="eyebrow">An invitation, not a doctrine</div>
+        <h2>The future is something we can investigate — and help create.</h2>
+        <p>
+          Explore the ideas. Challenge the assumptions. Bring different disciplines
+          and lived experiences into the conversation. Test possibilities in the
+          real world. Keep what proves useful; revise what does not.
+        </p>
+        <a class="button primary" href="#home">Begin exploring</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© <span id="year"></span> ATOTSM · An open, evolving inquiry.</span>
+      <span>Usurology × Ikigaiology</span>
+      <a href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+  <script>
+    const toggle = document.querySelector(".menu-toggle");
+    const links = document.querySelector(".navlinks");
+    toggle.addEventListener("click", () => {
+      const open = toggle.getAttribute("aria-expanded") !== "true";
+      toggle.setAttribute("aria-expanded", String(open));
+      links.classList.toggle("open", open);
+    });
+    links.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        links.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    });
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
