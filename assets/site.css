@@ -40,3 +40,58 @@ main section[id]{scroll-margin-top:150px}
  .page-step strong{font-size:.9rem}
  .breadcrumb{font-size:.66rem}
 }
+
+/* Homepage editorial hierarchy */
+.hero-invitation{max-width:680px;color:var(--muted);font-size:.9rem;line-height:1.8;margin-top:12px}
+.four-words{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:48px;color:var(--glow);font:1.25rem var(--serif);letter-spacing:.04em}
+.four-words i{font-style:normal;color:var(--muted)}
+.display-heading{font:400 clamp(2.7rem,5vw,4.5rem)/1.02 var(--serif);margin:15px 0}
+.display-heading em{color:#a16f35;font-style:italic}
+.explore-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid var(--line)}
+.explore-step{display:flex;flex-direction:column;padding:24px 20px 22px 0;min-height:250px;text-decoration:none}
+.explore-step+.explore-step{border-left:1px solid var(--line);padding-left:20px}
+.explore-number{color:var(--glow);font-size:.68rem;letter-spacing:.15em;font-weight:700}
+.explore-step h3{font:400 1.85rem/1.1 var(--serif);margin:18px 0 8px}
+.explore-step p{font-size:.84rem;color:var(--dim);margin:0 0 20px}
+.step-link{margin-top:auto;color:var(--glow);font-size:.75rem}
+.condition-grid,.discipline-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.condition-card,.discipline-card{border:1px solid var(--line);padding:clamp(22px,4vw,38px);position:relative}
+.condition-card{background:#fff9}
+.condition-card.arcadia{background:#fff}
+.condition-symbol{font:2.4rem var(--serif);color:#a16f35;margin-bottom:20px}
+.condition-kicker{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:#74654f;margin-top:8px}
+.condition-card h3,.discipline-card h3{font:400 clamp(2.5rem,4vw,3.6rem)/1 var(--serif);margin:10px 0;color:var(--bg)}
+.condition-quote{font:italic 1.35rem/1.3 var(--serif);color:#6a553b}
+.condition-card p:not(.condition-quote){font-size:.87rem;line-height:1.8;color:#514c42}
+.coexist-note{border-left:2px solid #a16f35;padding:18px 22px;margin-top:18px;color:#514c42;background:#a16f350c}
+.coexist-note strong{color:#352c20}
+.discipline-card{background:linear-gradient(145deg,#ffffff08,transparent 70%)}
+.discipline-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:13px;margin-bottom:25px;color:var(--muted);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase}
+.discipline-top b{font:1.6rem var(--serif);color:var(--glow)}
+.discipline-card h3{color:var(--paper)}
+.discipline-card .eyebrow{margin-top:8px}
+.discipline-tagline{font:italic 1.35rem/1.3 var(--serif);color:var(--glow);margin:12px 0}
+.discipline-card p:not(.discipline-tagline){font-size:.88rem;color:var(--dim)}
+.text-link{display:inline-flex;gap:12px;align-items:center;margin-top:18px;text-decoration:none;color:var(--glow);font-size:.8rem;font-weight:700}
+.text-link:hover{color:var(--paper)}
+.integration{display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;padding:24px;border:1px solid #c18b4566;margin-top:16px}
+.integration-symbol{font:2.7rem var(--serif);color:var(--glow);white-space:nowrap}
+.integration strong{font:1.25rem var(--serif)}
+.integration p{margin:5px 0 0;color:var(--dim);font-size:.85rem}
+.integration-arrow{font-size:2rem;color:var(--glow)}
+@media(max-width:800px){
+ .explore-steps{grid-template-columns:1fr 1fr}
+ .explore-step{min-height:220px;padding:20px 15px 20px 0}
+ .explore-step+.explore-step{padding-left:15px}
+ .explore-step:nth-child(3){border-left:0;border-top:1px solid var(--line);padding-left:0}
+ .explore-step:nth-child(4){border-top:1px solid var(--line)}
+ .condition-grid,.discipline-grid{grid-template-columns:1fr}
+}
+@media(max-width:440px){
+ .explore-steps{grid-template-columns:1fr}
+ .explore-step,.explore-step+.explore-step,.explore-step:nth-child(3){border-left:0;padding:20px 0;min-height:0}
+ .explore-step+.explore-step{border-top:1px solid var(--line)}
+ .four-words{font-size:1.08rem;gap:7px;margin-top:35px}
+ .integration{grid-template-columns:auto 1fr;gap:12px}
+ .integration-arrow{display:none}
+}
