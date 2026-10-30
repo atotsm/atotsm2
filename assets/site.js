@@ -19,3 +19,29 @@ if(sectionNav){
  });
  if(!sectionNav.children.length)sectionNav.closest("details").hidden=true;
 }
+
+// Smooth, deliberate in-page navigation: keep the URL in sync, scroll visibly,
+// and briefly mark the destination so visitors understand where they arrived.
+document.addEventListener("click",event=>{
+ const link=event.target.closest('a[href^="#"]');
+ if(!link)return;
+ const raw=link.getAttribute("href");
+ if(!raw||raw==="#")return;
+ let target;
+ try{target=document.getElementById(decodeURIComponent(raw.slice(1)))}catch{return}
+ if(!target)return;
+ event.preventDefault();
+ const reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+ const destination=target.closest("main section")||target;
+ if(history.pushState)history.pushState(null,"",raw);
+ destination.scrollIntoView({behavior:reduced?"auto":"smooth",block:"start"});
+ const heading=destination.querySelector("h1,h2,h3")||destination;
+ if(!heading.hasAttribute("tabindex"))heading.setAttribute("tabindex","-1");
+ window.setTimeout(()=>heading.focus({preventScroll:true}),reduced?0:350);
+ destination.classList.remove("section-arrival");
+ void destination.offsetWidth;
+ destination.classList.add("section-arrival");
+ window.setTimeout(()=>destination.classList.remove("section-arrival"),1900);
+ const details=link.closest(".section-map");
+ if(details)details.removeAttribute("open");
+});
