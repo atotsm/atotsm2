@@ -99,3 +99,56 @@ main section[id]{scroll-margin-top:150px}
 .brand-word{display:flex;flex-direction:column;gap:0;line-height:1.1;letter-spacing:.12em}.brand-word small{font-size:.48rem;letter-spacing:.13em;color:var(--muted);font-weight:500;margin-top:4px}.four-words{text-transform:uppercase;letter-spacing:.13em}.glossary{border-top:1px solid var(--line)}.glossary details{border-bottom:1px solid var(--line);padding:15px 0}.glossary summary{cursor:pointer;list-style:none;color:var(--glow);font:1.45rem var(--serif);display:flex;justify-content:space-between;gap:16px}.glossary summary::-webkit-details-marker{display:none}.glossary summary:after{content:'＋';font:1rem var(--sans);color:var(--muted)}.glossary details[open] summary:after{content:'−'}.glossary details p{max-width:760px;color:var(--dim);margin:12px 0 4px}.paper .glossary{border-color:#0002}.paper .glossary details{border-color:#0002}.paper .glossary summary{color:#815a2a}.paper .glossary details p{color:#514c42}
 
 .identity-line{margin-top:13px;color:var(--muted);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase}.identity-line span{color:var(--glow)}
+
+
+/* Contrast corrections: light-paper sections must use dark, readable text. */
+.paper .head p,
+.paper .muted,
+.paper .card p,
+.paper .card li,
+.paper .step p,
+.paper .domain p,
+.paper .band p,
+.paper td,
+.paper .note,
+.paper .note p {color:#514c42}
+.paper .card .num,
+.paper .num,
+.paper .step b,
+.paper th,
+.paper .tag,
+.paper .text-link {color:#815a2a}
+.paper .note {background:#a16f3512;border-left-color:#94652f}
+.paper .note strong {color:#352c20}
+.paper .card {border-color:#c8bda9;background:#fff9}
+.paper .card a {color:#704819}
+.paper .card a:hover,
+.paper .text-link:hover {color:#352c20}
+.paper .eyebrow {color:#704819}
+.paper .condition-card .eyebrow,
+.paper .discipline-card .eyebrow {color:#704819}
+.paper .condition-card h3,
+.paper .discipline-card h3 {color:#25231e}
+.paper .condition-card p:not(.condition-quote),
+.paper .condition-quote,
+.paper .coexist-note {color:#514c42}
+.paper .coexist-note strong {color:#352c20}
+.paper .section-map nav {background:#fffaf0}
+.paper .section-map nav a {color:#514c42}
+.paper .section-map nav a:hover {color:#352c20;background:#a16f3512}
+.paper .tag {border-color:#c8bda9}
+
+/* Make in-page navigation visibly travel and identify the destination. */
+html {scroll-behavior:smooth;scroll-padding-top:160px}
+main section[id] {scroll-margin-top:160px}
+main section.section-arrival {animation:section-arrival 1.8s ease-out}
+@keyframes section-arrival {
+  0% {outline:2px solid #c18b45;outline-offset:-5px}
+  70% {outline:2px solid #c18b4566;outline-offset:-5px}
+  100% {outline:2px solid transparent;outline-offset:-5px}
+}
+:focus-visible {outline:2px solid var(--glow);outline-offset:4px}
+@media(prefers-reduced-motion:reduce) {
+  html {scroll-behavior:auto}
+  main section.section-arrival {animation:none;outline:2px solid var(--gold);outline-offset:-5px}
+}
