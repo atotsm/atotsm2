@@ -95,3 +95,5 @@ main section[id]{scroll-margin-top:150px}
  .integration{grid-template-columns:auto 1fr;gap:12px}
  .integration-arrow{display:none}
 }
+
+.brand-word{display:flex;flex-direction:column;gap:0;line-height:1.1;letter-spacing:.12em}.brand-word small{font-size:.48rem;letter-spacing:.13em;color:var(--muted);font-weight:500;margin-top:4px}.four-words{text-transform:uppercase;letter-spacing:.13em}.glossary{border-top:1px solid var(--line)}.glossary details{border-bottom:1px solid var(--line);padding:15px 0}.glossary summary{cursor:pointer;list-style:none;color:var(--glow);font:1.45rem var(--serif);display:flex;justify-content:space-between;gap:16px}.glossary summary::-webkit-details-marker{display:none}.glossary summary:after{content:'＋';font:1rem var(--sans);color:var(--muted)}.glossary details[open] summary:after{content:'−'}.glossary details p{max-width:760px;color:var(--dim);margin:12px 0 4px}.paper .glossary{border-color:#0002}.paper .glossary details{border-color:#0002}.paper .glossary summary{color:#815a2a}.paper .glossary details p{color:#514c42}
