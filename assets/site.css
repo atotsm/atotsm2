@@ -184,3 +184,11 @@ main section.section-arrival {animation:section-arrival 1.8s ease-out}
  .explore-step,.step-question{transition:none}
  .step-reveal{animation:none}
 }
+
+/* Accordion open-state: remove the card-side rule; separate reveal with a top rule only. */
+.explore-step.is-open{border-color:transparent;background:transparent}
+.explore-step+.explore-step{border-left:0}
+.explore-step{border-right:0}
+.explore-step:first-child{border-left:0}
+.step-reveal{border-top:1px solid var(--line)}
+.explore-step.is-open .step-reveal{border-top-color:#c18b4566}
