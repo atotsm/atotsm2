@@ -20,8 +20,7 @@ if(sectionNav){
  if(!sectionNav.children.length)sectionNav.closest("details").hidden=true;
 }
 
-// Smooth, deliberate in-page navigation: keep the URL in sync, scroll visibly,
-// and briefly mark the destination so visitors understand where they arrived.
+// Smooth, deliberate in-page navigation: keep the URL in sync and scroll visibly.
 document.addEventListener("click",event=>{
  const link=event.target.closest('a[href^="#"]');
  if(!link)return;
