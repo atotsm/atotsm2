@@ -45,3 +45,28 @@ document.addEventListener("click",event=>{
  const details=link.closest(".section-map");
  if(details)details.removeAttribute("open");
 });
+
+// In-place four-step exploration: one answer open at a time.
+document.addEventListener("click",event=>{
+ const button=event.target.closest(".step-toggle");
+ if(!button)return;
+ const panel=document.getElementById(button.getAttribute("aria-controls"));
+ if(!panel)return;
+ const opening=button.getAttribute("aria-expanded")!=="true";
+ document.querySelectorAll(".step-toggle[aria-expanded='true']").forEach(other=>{
+  if(other===button)return;
+  other.setAttribute("aria-expanded","false");
+  const otherPanel=document.getElementById(other.getAttribute("aria-controls"));
+  if(otherPanel)otherPanel.hidden=true;
+  const marker=other.querySelector(".step-link [aria-hidden='true']");
+  if(marker)marker.textContent="＋";
+  const card=other.closest(".explore-step");
+  if(card)card.classList.remove("is-open");
+ });
+ button.setAttribute("aria-expanded",String(opening));
+ panel.hidden=!opening;
+ const marker=button.querySelector(".step-link [aria-hidden='true']");
+ if(marker)marker.textContent=opening?"−":"＋";
+ const card=button.closest(".explore-step");
+ if(card)card.classList.toggle("is-open",opening);
+});
