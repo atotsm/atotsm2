@@ -192,3 +192,36 @@ main section.section-arrival {animation:section-arrival 1.8s ease-out}
 
 /* Distinct editorial treatment for the investigation/flourishing statement. */
 .discipline-quote{font:italic 1.25rem/1.5 var(--serif)!important;color:#815a2a!important;border-left:2px solid #a16f35;padding:10px 0 10px 18px;margin:20px 0}
+
+
+/* ATOTSM spectrum map: progressive disclosure with native accessible details. */
+.spectrum-list{border-top:1px solid var(--line)}
+.spectrum-item{border-bottom:1px solid var(--line)}
+.spectrum-item details>summary{list-style:none;display:grid;grid-template-columns:110px minmax(180px,.8fr) minmax(220px,1.5fr) 190px;gap:18px;align-items:center;padding:23px 8px;cursor:pointer}
+.spectrum-item details>summary::-webkit-details-marker{display:none}
+.spectrum-index{font-size:.68rem;letter-spacing:.13em;color:var(--glow);font-weight:700}
+.spectrum-title{font:400 1.65rem/1.12 var(--serif);color:var(--paper)}
+.spectrum-summary{font-size:.84rem;line-height:1.65;color:var(--dim)}
+.spectrum-action{display:flex;justify-content:space-between;gap:12px;align-items:center;color:var(--glow);font-size:.74rem}
+.spectrum-action b{font-size:1.1rem;font-weight:400}
+.spectrum-item summary:hover .spectrum-title,.spectrum-item details[open] .spectrum-title{color:var(--glow)}
+.spectrum-item summary:focus-visible{outline:2px solid var(--glow);outline-offset:-3px}
+.spectrum-reveal{max-width:850px;padding:0 20px 28px 128px;animation:step-reveal-in .25s ease-out}
+.spectrum-reveal h3{font:400 1.7rem/1.15 var(--serif);margin:0 0 10px;color:var(--paper)}
+.spectrum-reveal p,.spectrum-reveal li{font-size:.88rem;line-height:1.8;color:var(--dim)}
+.spectrum-reveal ul{padding-left:20px}
+.spectrum-reveal .text-link{color:var(--glow)}
+@media(max-width:800px){
+ .spectrum-item details>summary{grid-template-columns:85px 1fr;gap:8px 14px;padding:20px 4px}
+ .spectrum-summary{grid-column:2}
+ .spectrum-action{grid-column:2}
+ .spectrum-reveal{padding:0 12px 24px 99px}
+}
+@media(max-width:440px){
+ .spectrum-item details>summary{grid-template-columns:1fr auto;gap:7px 12px}
+ .spectrum-index{grid-column:1/-1}
+ .spectrum-title{font-size:1.55rem}
+ .spectrum-summary,.spectrum-action{grid-column:1/-1}
+ .spectrum-action{max-width:100%}
+ .spectrum-reveal{padding:0 4px 22px}
+}
