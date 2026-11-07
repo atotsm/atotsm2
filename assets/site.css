@@ -307,6 +307,7 @@ main section.section-arrival {animation:section-arrival 1.8s ease-out}
  transform:translate(-50%,-50%);
  width:min(420px,calc(100vw - 32px));
  max-width:calc(100vw - 32px);
+ max-height:70vh;
  max-height:min(70dvh,520px);
  overflow-y:auto;
  overscroll-behavior:contain;
@@ -320,7 +321,7 @@ main section.section-arrival {animation:section-arrival 1.8s ease-out}
 .section-map nav a{padding:12px 13px;font-size:.86rem;line-height:1.4}
 .section-map summary{position:relative;z-index:1002}
 @media(max-width:800px){
- .section-map nav{width:min(420px,calc(100vw - 28px));max-width:calc(100vw - 28px);max-height:min(72dvh,520px);padding:10px}
+ .section-map nav{width:min(420px,calc(100vw - 28px));max-width:calc(100vw - 28px);max-height:72vh;max-height:min(72dvh,520px);padding:10px}
  .section-map nav a{padding:12px;font-size:.82rem}
 }
 @media(prefers-reduced-motion:no-preference){
