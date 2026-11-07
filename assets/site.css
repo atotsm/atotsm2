@@ -328,3 +328,9 @@ main section.section-arrival {animation:section-arrival 1.8s ease-out}
  .section-map[open] nav{animation:section-index-enter .16s ease-out}
  @keyframes section-index-enter{from{opacity:0;transform:translate(-50%,-48%)}to{opacity:1;transform:translate(-50%,-50%)}}
 }
+
+/* Layering contract: site navigation must always sit above page-level controls. */
+header{z-index:1100}
+.orientation{position:relative;z-index:1}
+.section-map summary{z-index:auto}
+.section-map[open] summary{z-index:1002}
