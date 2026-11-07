@@ -101,3 +101,12 @@ document.querySelectorAll(".section-map").forEach(details=>{
   }
  });
 });
+
+/* Raise the entire orientation layer while its section index is open.
+   This ensures the backdrop and panel cover following page content. */
+document.querySelectorAll(".section-map").forEach(details=>{
+ const orientation=details.closest(".orientation");
+ const syncLayer=()=>{if(orientation)orientation.classList.toggle("section-index-open",details.open)};
+ syncLayer();
+ details.addEventListener("toggle",syncLayer);
+});

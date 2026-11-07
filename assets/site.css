@@ -355,3 +355,7 @@ header{z-index:1100}
   border-bottom:0;
  }
 }
+
+/* The overlay belongs above page content as a whole, not just inside its
+   lower stacking context. Keep the sticky site header above both. */
+.orientation.section-index-open{z-index:1050}
