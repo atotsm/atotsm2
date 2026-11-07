@@ -285,3 +285,45 @@ main section.section-arrival {animation:section-arrival 1.8s ease-out}
  .orientation-hint{font-size:.59rem}
  .section-map summary{font-size:.64rem;padding:5px 7px}
 }
+
+/* Section index: viewport-centred dialog panel, never anchored off-screen. */
+.section-map[open]{z-index:1000}
+.section-map[open]::before{
+ content:"";
+ position:fixed;
+ inset:0;
+ z-index:1000;
+ background:rgba(0,0,0,.58);
+ backdrop-filter:blur(2px);
+ -webkit-backdrop-filter:blur(2px);
+}
+.section-map nav{
+ position:fixed;
+ z-index:1001;
+ top:50%;
+ left:50%;
+ right:auto;
+ bottom:auto;
+ transform:translate(-50%,-50%);
+ width:min(420px,calc(100vw - 32px));
+ max-width:calc(100vw - 32px);
+ max-height:min(70dvh,520px);
+ overflow-y:auto;
+ overscroll-behavior:contain;
+ box-sizing:border-box;
+ padding:12px;
+ border:1px solid var(--line);
+ border-radius:2px;
+ box-shadow:0 24px 70px rgba(0,0,0,.48);
+ background:#24221c;
+}
+.section-map nav a{padding:12px 13px;font-size:.86rem;line-height:1.4}
+.section-map summary{position:relative;z-index:1002}
+@media(max-width:800px){
+ .section-map nav{width:min(420px,calc(100vw - 28px));max-width:calc(100vw - 28px);max-height:min(72dvh,520px);padding:10px}
+ .section-map nav a{padding:12px;font-size:.82rem}
+}
+@media(prefers-reduced-motion:no-preference){
+ .section-map[open] nav{animation:section-index-enter .16s ease-out}
+ @keyframes section-index-enter{from{opacity:0;transform:translate(-50%,-48%)}to{opacity:1;transform:translate(-50%,-50%)}}
+}
