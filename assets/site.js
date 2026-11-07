@@ -29,9 +29,9 @@ if(sectionNav){
   link.href="#"+section.id;
   link.textContent=heading.textContent.replace(/\s+/g," ").trim();
   sectionNav.appendChild(link);
-  link.addEventListener("click",()=>{const details=sectionNav.closest("details");if(details)details.open=false});
+  link.addEventListener("click",()=>{const dialog=sectionNav.closest("dialog");if(dialog?.open)dialog.close()});
  });
- if(!sectionNav.children.length)sectionNav.closest("details").hidden=true;
+ if(!sectionNav.children.length)sectionNav.closest(".section-map").hidden=true;
 }
 
 // Smooth, deliberate in-page navigation: keep the URL in sync and scroll visibly.
@@ -85,28 +85,21 @@ document.addEventListener("click",event=>{
  if(card)card.classList.toggle("is-open",opening);
 });
 
-/* Section index dialog behavior: outside click and Escape dismiss the panel. */
-document.querySelectorAll(".section-map").forEach(details=>{
- details.addEventListener("click",event=>{
-  if(event.target===details&&details.open)details.open=false;
+/* Native section-index dialog: browser top layer handles stacking and focus.
+   Opaque panel styling is in site.css; close by button, backdrop or Escape. */
+document.querySelectorAll(".section-map").forEach(container=>{
+ const trigger=container.querySelector(".section-map-trigger");
+ const dialog=container.querySelector(".section-index-dialog");
+ const close=container.querySelector(".section-index-close");
+ if(!trigger||!dialog)return;
+ trigger.addEventListener("click",()=>{
+  if(typeof dialog.showModal==="function")dialog.showModal();
+  else dialog.setAttribute("open","");
  });
- document.addEventListener("click",event=>{
-  if(details.open&&!details.contains(event.target))details.open=false;
+ close?.addEventListener("click",()=>dialog.close());
+ dialog.addEventListener("click",event=>{
+  if(event.target===dialog)dialog.close();
  });
- document.addEventListener("keydown",event=>{
-  if(event.key==="Escape"&&details.open){
-   details.open=false;
-   const summary=details.querySelector("summary");
-   if(summary)summary.focus();
-  }
- });
+ dialog.addEventListener("close",()=>trigger.focus());
 });
 
-/* Raise the entire orientation layer while its section index is open.
-   This ensures the backdrop and panel cover following page content. */
-document.querySelectorAll(".section-map").forEach(details=>{
- const orientation=details.closest(".orientation");
- const syncLayer=()=>{if(orientation)orientation.classList.toggle("section-index-open",details.open)};
- syncLayer();
- details.addEventListener("toggle",syncLayer);
-});
