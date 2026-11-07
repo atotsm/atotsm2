@@ -1,4 +1,18 @@
-const b=document.querySelector(".menu"),n=document.querySelector(".links");if(b&&n){b.addEventListener("click",()=>{let o=b.getAttribute("aria-expanded")!=="true";b.setAttribute("aria-expanded",String(o));n.classList.toggle("open",o)});n.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{n.classList.remove("open");b.setAttribute("aria-expanded","false")}))}
+const b=document.querySelector(".menu"),n=document.querySelector(".links");
+if(b&&n){
+ const closeMenu=()=>{n.classList.remove("open");b.setAttribute("aria-expanded","false");b.setAttribute("aria-label","Open navigation");b.textContent="Menu"};
+ b.setAttribute("aria-label","Open navigation");
+ b.addEventListener("click",()=>{
+  const opening=b.getAttribute("aria-expanded")!=="true";
+  b.setAttribute("aria-expanded",String(opening));
+  b.setAttribute("aria-label",opening?"Close navigation":"Open navigation");
+  b.textContent=opening?"Close":"Menu";
+  n.classList.toggle("open",opening);
+ });
+ n.querySelectorAll("a").forEach(a=>a.addEventListener("click",closeMenu));
+ document.addEventListener("keydown",event=>{if(event.key==="Escape"&&b.getAttribute("aria-expanded")==="true"){closeMenu();b.focus()}});
+ document.addEventListener("click",event=>{if(b.getAttribute("aria-expanded")==="true"&&!n.contains(event.target)&&!b.contains(event.target))closeMenu()});
+}
 document.querySelectorAll("[data-year]").forEach(e=>e.textContent=new Date().getFullYear());
 // Build a compact, page-specific section index from the actual page headings.
 const sectionNav=document.querySelector(".section-map nav");
