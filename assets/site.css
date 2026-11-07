@@ -359,3 +359,55 @@ header{z-index:1100}
 /* The overlay belongs above page content as a whole, not just inside its
    lower stacking context. Keep the sticky site header above both. */
 .orientation.section-index-open{z-index:1050}
+
+/* Section index is a real modal dialog: opaque surface, browser top layer,
+   deliberate backdrop, bounded scrolling, and no dependency on parent z-index. */
+.section-map{position:static}
+.section-map-trigger{display:inline-flex;align-items:center;gap:8px;cursor:pointer;background:transparent;border:1px solid var(--line);padding:6px 10px;color:var(--dim);font:inherit;font-size:.7rem;white-space:nowrap}
+.section-map-trigger span{color:var(--glow)}
+.section-map-trigger:hover{border-color:var(--glow);color:var(--paper)}
+.section-index-dialog{
+ position:fixed;
+ inset:0;
+ margin:0;
+ width:100%;
+ max-width:none;
+ height:100%;
+ max-height:none;
+ padding:16px;
+ border:0;
+ background:transparent;
+ color:var(--paper);
+ overflow:auto;
+ box-sizing:border-box;
+}
+.section-index-dialog:not([open]){display:none}
+.section-index-dialog[open]{display:grid;place-items:center}
+.section-index-dialog::backdrop{background:rgba(7,7,6,.82);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.section-index-panel{
+ width:min(420px,100%);
+ max-height:min( min(72vh,560px), calc(100dvh - 32px) );
+ overflow:auto;
+ overscroll-behavior:contain;
+ box-sizing:border-box;
+ padding:18px;
+ background:#24221c !important;
+ color:#e8e0d1;
+ border:1px solid #766b58;
+ box-shadow:0 24px 80px rgba(0,0,0,.65);
+}
+.section-index-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:12px;margin-bottom:8px;border-bottom:1px solid #5c5548}
+.section-index-heading h2{margin:0;color:#e8e0d1;font:400 1.25rem/1.25 var(--serif)}
+.section-index-close{flex:0 0 auto;border:1px solid #766b58;background:#302d25;color:#e8e0d1;padding:7px 10px;cursor:pointer;font:inherit;font-size:.75rem}
+.section-index-close span{color:var(--glow);margin-left:5px}
+.section-index-dialog nav{display:flex;flex-direction:column;gap:0;background:#24221c !important}
+.section-index-dialog nav a{display:block;padding:12px 10px;color:#d7cebd !important;background:#24221c !important;border-bottom:1px solid #514b40;text-align:left;text-decoration:none;font-size:.88rem;line-height:1.4}
+.section-index-dialog nav a:last-child{border-bottom:0}
+.section-index-dialog nav a:hover,.section-index-dialog nav a:focus-visible{background:#343026 !important;color:#e5bd7b !important}
+.section-index-dialog :focus-visible,.section-map-trigger:focus-visible{outline:2px solid #d6ad70;outline-offset:3px}
+@media(max-width:440px){
+ .section-index-dialog{padding:14px}
+ .section-index-panel{padding:15px;max-height:calc(100vh - 28px);max-height:calc(100dvh - 28px)}
+ .section-index-heading h2{font-size:1.12rem}
+ .section-index-dialog nav a{padding:13px 9px;font-size:.84rem}
+}
