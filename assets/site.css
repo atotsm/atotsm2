@@ -334,3 +334,22 @@ header{z-index:1100}
 .orientation{position:relative;z-index:1}
 .section-map summary{z-index:auto}
 .section-map[open] summary{z-index:1002}
+
+/* Mobile navigation is a full-height overlay, not a small dropdown.
+   It fully covers page-level controls such as the section index while open. */
+@media(max-width:980px){
+ header nav.wrap .links.open{
+  position:fixed;
+  top:72px;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:1101;
+  display:flex;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  background:#171713;
+  padding:14px 22px 28px;
+  border-bottom:0;
+ }
+}
