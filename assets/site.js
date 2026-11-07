@@ -84,3 +84,20 @@ document.addEventListener("click",event=>{
  const card=button.closest(".explore-step");
  if(card)card.classList.toggle("is-open",opening);
 });
+
+/* Section index dialog behavior: outside click and Escape dismiss the panel. */
+document.querySelectorAll(".section-map").forEach(details=>{
+ details.addEventListener("click",event=>{
+  if(event.target===details&&details.open)details.open=false;
+ });
+ document.addEventListener("click",event=>{
+  if(details.open&&!details.contains(event.target))details.open=false;
+ });
+ document.addEventListener("keydown",event=>{
+  if(event.key==="Escape"&&details.open){
+   details.open=false;
+   const summary=details.querySelector("summary");
+   if(summary)summary.focus();
+  }
+ });
+});
